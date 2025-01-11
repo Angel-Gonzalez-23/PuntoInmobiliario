@@ -24,6 +24,13 @@ const Usuario = db.define('usuarios', {
             const salt = 10
             usuario.password = await bcryptjs.hash(usuario.password, salt);
         }
+    },
+    scopes:{
+        ocultarDatos:{
+            attributes:{ 
+                exclude: ['password', 'token', 'confirmado', 'createdAt','updatedAt']
+            }
+        }
     }
 })
 
