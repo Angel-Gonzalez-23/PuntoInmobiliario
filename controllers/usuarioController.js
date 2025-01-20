@@ -65,6 +65,9 @@ const autenticar = async (req, res) => {
     }).redirect('/mis-propiedades')
 }
 
+const cerrarSesion = async(req, res) => {
+    return res.clearCookie('_token').status(200).redirect('/auth/login')
+}
 const formularioRegistro =  (req, res) => {
     res.render('auth/registro.pug', {
         pagina: 'Resgistrarse ahora ',
@@ -245,6 +248,7 @@ const ressetPassword = async (req, res) => {
 export {
     formularioLogin,
     autenticar,
+    cerrarSesion,
     formularioRegistro,
     formularioResetpsswd,
     ressetPassword,

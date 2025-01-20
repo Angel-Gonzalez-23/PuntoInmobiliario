@@ -1,8 +1,10 @@
-import  express  from "express";
+import  express, { Router }  from "express";
 import {body} from 'express-validator'
-import {admin, crear, guardar, agregarImagen, guardarImagen, editar, guardarCambios, eliminar} from '../controllers/propiedadesController.js'
+import {admin, crear, guardar, agregarImagen, guardarImagen, editar, guardarCambios, eliminar, cambiarEstado, mostrarPropiedad, enviarMensaje, verMensajes} from '../controllers/propiedadesController.js'
 import protegerRuta from "../middleware/protegerRuta.js";
 import upload from "../middleware/subirImagen.js";
+import identificarUsuario from "../middleware/identificarUsuario.js"
+
 
 const router =  express.Router()
 
@@ -36,6 +38,19 @@ router.post('/propiedades/editar/:id', protegerRuta,
     body("lat").notEmpty().withMessage("Posiciona la uicación en el Mapa"),
     guardarCambios
  )
+ //Eliminar prod
  router.post('/propiedades/eliminar/:id', protegerRuta, eliminar)
+//Cambiar estado de propiedad
+ router.put('/propiedad/:id', protegerRuta, cambiarEstado)
+ //Pulico
+ router.get('/propiedad/:id', identificarUsuario, mostrarPropiedad)
+ //Almacenar msj
+ router.post('/propiedad/:id', 
+    identificarUsuario, 
+    body("mensaje").isLength({min: 10}).withMessage('El mensaje debe tener mas de 10 caracteres'),
+    enviarMensaje
+)
+router.get('/mensajes/:id', protegerRuta, verMensajes)
+
 
 export default router;

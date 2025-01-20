@@ -5,6 +5,12 @@ const usuarios = [
        email: "ac61887@gmail.com",
        confirmado: 1,
        password:  bcryptjs.hashSync('Ian2018-21', 10)
+    }, 
+    {
+        nombre: "Edgar Adrian Cruz Gonzalez",
+        email: "ecruzg@gmail.com",
+        confirmado: 1,
+        password:  bcryptjs.hashSync('Ian2018-21', 10)
     }
 ]
 export default usuarios;

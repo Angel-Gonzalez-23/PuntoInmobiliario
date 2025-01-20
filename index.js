@@ -3,7 +3,9 @@ import csrf from "csurf";
 import cookieParser from "cookie-parser";
 import usuarioRoutes from "./Routes/usuarioRoute.js";
 import propiedadesRoutes from "./Routes/propiedadesRoutes.js";
-import db from './config/db.js'
+import appRoutes from "./Routes/appRoutes.js";
+import apiRoutes from './Routes/apiRoute.js';
+import db from './config/db.js';
 
 //Crear el app
 const app = express()
@@ -34,8 +36,10 @@ app.set('views', './views')
 app.use( express.static('public'))
 
 //Routing
+app.use('/', appRoutes);
 app.use('/auth', usuarioRoutes);
-app.use('/', propiedadesRoutes)
+app.use('/', propiedadesRoutes);
+app.use('/api', apiRoutes)
 
 //Definir puerto y arrancar el proyecto
 const port = process.env.port || 3000
