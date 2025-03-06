@@ -28,3 +28,19 @@ Dependencias:
     pug
     sequelize
     tedious
+
+Para su ejecución es necesario tener instalado MySQL con el puerto 3306 (se puede cambiar en las variables de entorno en caso de que este ocupado) e instalar las dependencias con npm i.
+Será necesario cambiar las variables de acceso a la Base de Datos en el archivo .env
+Conexión a Base de datos:
+    Bd_nombre 
+    Bd_Usuario
+    Bd_Psswd
+    Bd_host
+Conexión a servidor de correo:
+    Email_Host
+    Email_Port
+    Email_User
+    Email_Pass
+Variables para uso en envio de correos y creación de JWT
+    Backend_URL
+    Word_JWT
